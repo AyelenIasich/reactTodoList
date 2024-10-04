@@ -38,7 +38,9 @@ function App() {
 
   const searchTasks = taskList.filter(
     (task) => {
-      return normalizeText(task.text).includes(normalizeText(searchValue));
+      const tastText = normalizeText(task.text);
+      const searchText = normalizeText(searchValue);
+      return tastText.includes(searchText);
     }
   );
 
