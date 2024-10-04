@@ -1,0 +1,38 @@
+.list-item-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-icon {
+  color: #5c5b5b;
+  cursor: pointer;
+}
+
+.delete-icon:hover {
+  color: #e74c3c; 
+}
+
+.circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #e0e0e0;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.circle.completed {
+  background-color: #a78bfa;
+  border-color: #a78bfa;
+}
+
+.list-item-wrapper p {
+  margin-left: 15px;
+  flex: 1;
+}
+.task-completed{
+  text-decoration: line-through;
+  color:#5c5b5b;
+}

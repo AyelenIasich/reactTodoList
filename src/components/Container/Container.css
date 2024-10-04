@@ -1,0 +1,5 @@
+.bg-container{
+    background: rgb(82,60,123);
+    background: linear-gradient(114deg, rgba(82,60,123,1) 0%, rgba(124,98,173,1) 36%, rgba(220,209,241,1) 83%, rgba(255,255,255,1) 100%);
+    min-height: 100vh;
+}

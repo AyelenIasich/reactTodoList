@@ -1,0 +1,20 @@
+.title-icon-wrapper {
+  display: flex; /* Flexbox para alinear el título y el ícono en la misma línea */
+  align-items: center;
+  justify-content: space-between; /* Espacio entre el título y el ícono */
+}
+
+.title-list {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.rotated-icon {
+  transform: rotate(90deg);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.option-icon:hover{
+    color: #a78bfa; 
+}

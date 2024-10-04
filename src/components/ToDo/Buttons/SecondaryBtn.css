@@ -1,0 +1,48 @@
+.secondary-btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  border-radius: 15px;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 700;
+  color: #333; /* Color del texto */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 1;
+  border: none; /* Eliminar el borde principal */
+}
+
+.secondary-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 15px;
+  padding: 2px; /* Tamaño del borde */
+  background: linear-gradient(180deg, #a78bfa 0%, #4b267d 100%);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out; 
+  mask-composite: exclude;
+  z-index: -1; /* Para que quede detrás del botón */
+}
+
+.secondary-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(167, 139, 250, 0.4); /* Sombra suave con violeta */
+}
+
+.secondary-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(167, 139, 250, 0.4); /* Reducir la sombra al hacer clic */
+}

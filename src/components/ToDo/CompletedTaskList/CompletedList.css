@@ -1,0 +1,17 @@
+.dropdown-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.arrow-down-icon {
+  color: #5c5b5b;
+  cursor: pointer;
+}
+
+.arrow-down-icon:hover {
+  color: #a78bfa;
+}
+.dropdown-content {
+    margin-top: 10px;
+  }
