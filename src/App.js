@@ -12,27 +12,31 @@ import CreateToTaskBtn from "./components/ToDo/Buttons/CreateToTaskBtn";
 import SuccessModal from "./components/ToDo/SuccesModal/SuccessModal";
 import "./App.css";
 
-const defaultTasks = [
-  { id: 1, text: "Cortar Cebolla", completed: true },
-  { id: 2, text: "Cleaning", completed: false },
-  { id: 3, text: "Cooking", completed: false },
-];
+function useLocalStorage(itemName, initialValue) {
+  const localStorageItem = localStorage.getItem(itemName);
+  let parsedItem;
 
-function App() {
-  const localStorageTasks = localStorage.getItem("tasks_v1");
-  let parsedTask;
-
-  if (!localStorageTasks) {
-    parsedTask = [];
-    localStorage.setItem("tasks_v1", JSON.stringify([]))
+  if (!localStorageItem) {
+    parsedItem = [];
+    localStorage.setItem(itemName, JSON.stringify(initialValue));
   } else {
-    parsedTask = JSON.parse(localStorageTasks);
+    parsedItem = JSON.parse(localStorageItem);
   }
 
-  const [taskList, setTaskList] = useState(parsedTask);
+  const [item, setItem] = useState(parsedItem);
+
+  const saveItem = (newItem) => {
+    localStorage.setItem(itemName, JSON.stringify(newItem));
+    setItem(newItem);
+  };
+
+  return [item, saveItem ];
+}
+
+function App() {
+  const [taskList, saveTasks] = useLocalStorage("tasks_v1" , []);
   const [searchValue, setSearchValue] = useState("");
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-
   const completedTask = taskList.filter((task) => !!task.completed).length;
   const totalTask = taskList.length;
 
@@ -54,11 +58,6 @@ function App() {
     const searchText = normalizeText(searchValue);
     return tastText.includes(searchText);
   });
-
-  const saveTasks = (newTask) =>{
-    setTaskList(newTask);
-    localStorage.setItem("tasks_v1", JSON.stringify(newTask));
-  }
 
   const handleCompletedTask = (id) => {
     const newTaskList = [...taskList];
@@ -110,7 +109,7 @@ function App() {
               <CompletedList />
             </Card>
           </div>
-          <CreateToTaskBtn setTaskList={setTaskList} taskList={taskList} />
+          {/* <CreateToTaskBtn setTaskList={setTaskList} taskList={taskList} /> */}
         </ToDoContainer>
       </Container>
       {showSuccessMessage && (
