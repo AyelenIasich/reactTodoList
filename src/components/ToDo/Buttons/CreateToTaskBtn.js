@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CreateTaskModal from "../CreateTaskModal/CreateTaskModal";
 import "./CreateToTaskBtn.css";
 
-function CreateToTaskBtn() {
+function CreateToTaskBtn({setTaskList, taskList}) {
   const [showModal, setShowModal] = useState(false);
   
   const handleOpenCreateModal = () => {
@@ -13,17 +13,12 @@ function CreateToTaskBtn() {
     setShowModal(false);
   };
 
-  const handleSaveTask = () => {
-    console.log("save task");
-    setShowModal(false);
-  };
-
   return (
     <>
       <button onClick={handleOpenCreateModal} className="btn-create-task">
         +
       </button>
-      {showModal && <CreateTaskModal handleCloseModal={handleCloseCreateModal} handleSaveTask={handleSaveTask} />}
+      {showModal && <CreateTaskModal handleCloseModal={handleCloseCreateModal} setTaskList={setTaskList} taskList={taskList} />}
     </>
   );
 }

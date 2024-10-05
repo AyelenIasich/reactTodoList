@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./CompletedList.css";
 import ToDoItem from "../ToDoItem/ToDoItem";
+import { FaAngleDown } from "react-icons/fa";
 
 function CompletedList(props) {
   const { completedNumber = 2 } = props;
@@ -20,7 +21,7 @@ function CompletedList(props) {
     <>
       <div className="dropdown-wrapper " onClick={toggleDropdown}>
         <p className="title-list mb-0">Completed ({completedNumber})</p>
-        <i className="fa-solid fa-chevron-down arrow-down-icon"></i>
+        <FaAngleDown className="arrow-down-icon" />
       </div>
       {isOpen && (
         <div className="dropdown-content">
