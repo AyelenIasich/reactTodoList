@@ -16,11 +16,20 @@ const defaultTasks = [
   { id: 1, text: "Cortar Cebolla", completed: true },
   { id: 2, text: "Cleaning", completed: false },
   { id: 3, text: "Cooking", completed: false },
- 
 ];
 
 function App() {
-  const [taskList, setTaskList] = useState(defaultTasks);
+  const localStorageTasks = localStorage.getItem("tasks_v1");
+  let parsedTask;
+
+  if (!localStorageTasks) {
+    parsedTask = [];
+    localStorage.setItem("tasks_v1", JSON.stringify([]))
+  } else {
+    parsedTask = JSON.parse(localStorageTasks);
+  }
+
+  const [taskList, setTaskList] = useState(parsedTask);
   const [searchValue, setSearchValue] = useState("");
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
@@ -46,27 +55,32 @@ function App() {
     return tastText.includes(searchText);
   });
 
+  const saveTasks = (newTask) =>{
+    setTaskList(newTask);
+    localStorage.setItem("tasks_v1", JSON.stringify(newTask));
+  }
+
   const handleCompletedTask = (id) => {
     const newTaskList = [...taskList];
     const taskIndex = newTaskList.findIndex((task) => task.id == id);
-    newTaskList[taskIndex].completed = true;
-    setTaskList(newTaskList);
+    newTaskList[taskIndex].completed = !newTaskList[taskIndex].completed;
+    saveTasks(newTaskList);
   };
 
   const handleDeleteTask = (id) => {
     const newTaskList = [...taskList];
     const taskIndex = newTaskList.findIndex((task) => task.id == id);
     newTaskList.splice(taskIndex, 1);
-    setTaskList(newTaskList);
+    saveTasks(newTaskList);
   };
 
-  const handleCloseSuccessModal = () =>{
+  const handleCloseSuccessModal = () => {
     setShowSuccessMessage(false);
-  }
+  };
 
-  const handleOpenSuccessModal = () =>{
+  const handleOpenSuccessModal = () => {
     setShowSuccessMessage(true);
-  }
+  };
 
   return (
     <React.Fragment>

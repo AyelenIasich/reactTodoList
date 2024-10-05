@@ -4,6 +4,9 @@
   align-items: center;
 }
 
+.list-item{
+  cursor: pointer;
+}
 .delete-icon {
   color: #5c5b5b;
   cursor: pointer;

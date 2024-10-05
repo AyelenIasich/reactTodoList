@@ -5,7 +5,7 @@ function Container({ children }) {
   return (
     <div className="bg-container container-fluid ">
         <div className="row">
-          <div className="col-12 col-sm-11 col-md-8 mx-auto ">
+          <div className="col-12 col-sm-11 col-md-8 col-lg-6 mx-auto ">
              {children}
           </div>
         </div>

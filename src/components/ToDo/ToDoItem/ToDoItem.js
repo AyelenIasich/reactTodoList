@@ -10,7 +10,7 @@ function ToDoItem(props) {
         className={`circle ${isCompleted ? "completed" : ""}`} 
         onClick={onComplete}
       />
-      <p className={`mb-0 task ${isCompleted ? "task-completed" : "" }`}>{text}</p>
+      <p className={`list-item mb-0 task ${isCompleted ? "task-completed" : "" }`}  onClick={onComplete}>{text}</p>
       <i className="fa-solid fa-x delete-icon" onClick={handleDeleteTask}></i>
     </li>
   );
