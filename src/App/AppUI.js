@@ -12,15 +12,15 @@ import CreateTaskBtn from "../toDo/CreateTaskBtn";
 import SuccessModal from "../toDo/SuccesModal";
 
 function AppUI({
-    completedTask,
-    totalTask, 
-    searchValue,
-    setSearchValue, 
-    searchTasks,
-    handleCompletedTask,
-    handleDeleteTask,
-    handleCloseSuccessModal, 
-    showSuccessMessage,
+  completedTask,
+  totalTask,
+  searchValue,
+  setSearchValue,
+  searchTasks,
+  handleCompletedTask,
+  handleDeleteTask,
+  handleCloseSuccessModal,
+  showSuccessMessage,
 }) {
   return (
     <React.Fragment>
@@ -34,15 +34,19 @@ function AppUI({
           />
           <Card>
             <ToDoList>
-              {searchTasks.map((task) => (
-                <ToDoItem
-                  text={task.text}
-                  key={task.id}
-                  isCompleted={task.completed}
-                  onComplete={() => handleCompletedTask(task.id)}
-                  handleDeleteTask={() => handleDeleteTask(task.id)}
-                />
-              ))}
+              {searchTasks > 0 ? (
+                searchTasks.map((task) => (
+                  <ToDoItem
+                    text={task.text}
+                    key={task.id}
+                    isCompleted={task.completed}
+                    onComplete={() => handleCompletedTask(task.id)}
+                    handleDeleteTask={() => handleDeleteTask(task.id)}
+                  />
+                ))
+              ) : (
+                <p className="text-center">No tasks found. Start adding some tasks!</p>
+              )}
             </ToDoList>
           </Card>
           <div className="mb-5 pb-4 mb-sm-0 pb-md-0">

@@ -23,16 +23,21 @@ function CompletedList(props) {
         <p className="title-list mb-0">Completed ({completedNumber})</p>
         <FaAngleDown className="arrow-down-icon" />
       </div>
+
       {isOpen && (
         <div className="dropdown-content">
           <ul className="ps-0">
-            {completedTask.map((completedTask) => (
-              <ToDoItem
-                text={completedTask.text}
-                key={completedTask.id}
-                completed={completedTask.completed}
-              />
-            ))}
+            {completedTask.length > 0 ? (
+              completedTask.map((completedTask) => (
+                <ToDoItem
+                  text={completedTask.text}
+                  key={completedTask.id}
+                  completed={completedTask.completed}
+                />
+              ))
+            ) : (
+              <p className="text-center">No task completed!</p>
+            )}
           </ul>
         </div>
       )}

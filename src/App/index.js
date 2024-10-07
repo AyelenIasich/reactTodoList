@@ -9,12 +9,6 @@ function App() {
   const completedTask = taskList.filter((task) => !!task.completed).length;
   const totalTask = taskList.length;
 
-  console.log("log 1 ")
-  useEffect(()=>{
-    console.log("log 2 ")
-  }, []);
-  console.log("log 3")
-
   useEffect(() => {
     if (completedTask === totalTask && totalTask > 0) {
       handleOpenSuccessModal();
@@ -56,17 +50,19 @@ function App() {
     setShowSuccessMessage(true);
   };
 
-  return <AppUI 
-    completedTask={completedTask}
-    totalTask={totalTask}
-    searchValue={searchValue}
-    setSearchValue={setSearchValue}
-    searchTasks={searchTasks}
-    handleCompletedTask={handleCompletedTask}
-    handleDeleteTask={handleDeleteTask}
-    handleCloseSuccessModal={handleCloseSuccessModal}
-    showSuccessMessage={showSuccessMessage}
-  />;
+  return (
+    <AppUI
+      completedTask={completedTask}
+      totalTask={totalTask}
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      searchTasks={searchTasks}
+      handleCompletedTask={handleCompletedTask}
+      handleDeleteTask={handleDeleteTask}
+      handleCloseSuccessModal={handleCloseSuccessModal}
+      showSuccessMessage={showSuccessMessage}
+    />
+  );
 }
 
 export default App;
