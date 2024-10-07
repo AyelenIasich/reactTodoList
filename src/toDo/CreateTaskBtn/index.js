@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import CreateTaskModal from "../CreateTaskModal/CreateTaskModal";
-import "./CreateToTaskBtn.css";
+import "./CreateTaskBtn.css"
+import CreateTaskModal from "../CreateTaskModal";
 
-function CreateToTaskBtn({setTaskList, taskList}) {
+function CreateTaskBtn({setTaskList, taskList}) {
   const [showModal, setShowModal] = useState(false);
   
   const handleOpenCreateModal = () => {
@@ -23,4 +23,4 @@ function CreateToTaskBtn({setTaskList, taskList}) {
   );
 }
 
-export default CreateToTaskBtn;
+export default CreateTaskBtn;

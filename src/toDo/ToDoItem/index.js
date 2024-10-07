@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./ToDoItem.css";
 
 function ToDoItem(props) {

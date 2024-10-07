@@ -1,0 +1,40 @@
+.btn-create-task {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    background: linear-gradient(180deg, #a78bfa 0%, #4b267d 100%);
+    border: none;
+    color: white;
+    font-size: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .btn-create-task:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .btn-create-task:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  @media (min-width: 769px) {
+    .btn-create-task {
+      float: right; 
+      margin-right: 20px;
+    }
+  }
+  @media (max-width: 768px) {
+    .btn-create-task {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 1000;
+    }
+  }
+  

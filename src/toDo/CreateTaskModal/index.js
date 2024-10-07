@@ -1,10 +1,9 @@
 import React, {useState} from "react";
 import "./CreateTaskModal.css";
-import ModalStandard from "../ModalStandard/ModalStandard";
-import InputGeneric from "../Input/InputGeneric";
-import PrimaryBtn from "../Buttons/PrimaryBtn";
-import { handleCreateTask } from "../../../utils/buttonHandlers";
-import SecondaryBtn from "../Buttons/SecondaryBtn";
+import InputGeneric from "../../components/Input/InputGeneric";
+import SecondaryBtn from "../../components/Buttons/SecondaryBtn";
+import PrimaryBtn from "../../components/Buttons/PrimaryBtn";
+import ModalStandard from "../../components/ModalStandard/ModalStandard";
 
 function CreateTaskModal(props) {
   const { handleCloseModal, setTaskList , taskList} = props;

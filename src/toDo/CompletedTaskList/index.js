@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./CompletedList.css";
-import ToDoItem from "../ToDoItem/ToDoItem";
 import { FaAngleDown } from "react-icons/fa";
+import ToDoItem from "../ToDoItem";
 
 function CompletedList(props) {
   const { completedNumber = 2 } = props;

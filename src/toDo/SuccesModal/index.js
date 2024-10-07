@@ -1,7 +1,7 @@
 import React from "react";
 import "./SuccessModal.css";
-import ModalStandard from "../ModalStandard/ModalStandard";
-import StarSuccessIcon from "../../Icons/StarSuccessIcon";
+import ModalStandard from "../../components/ModalStandard/ModalStandard";
+import StarSuccessIcon from "../../components/Icons/StarSuccessIcon";
 
 function SuccessModal(props) {
   const { handleCloseModal } = props;
