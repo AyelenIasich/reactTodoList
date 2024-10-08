@@ -10,6 +10,10 @@ import ToDoItem from "../toDo/ToDoItem";
 import CompletedList from "../toDo/CompletedTaskList";
 import CreateTaskBtn from "../toDo/CreateTaskBtn";
 import SuccessModal from "../toDo/SuccesModal";
+import ToDosLoading from "../toDo/ToDosLoading";
+import ToDosError from "../toDo/ToDosError";
+import EmptyTodos from "../toDo/EmpyTodos/EmptyTodos";
+import LoadingToDoCounter from "../toDo/LoadingToDoCounter";
 
 function AppUI({
   completedTask,
@@ -21,32 +25,43 @@ function AppUI({
   handleDeleteTask,
   handleCloseSuccessModal,
   showSuccessMessage,
+  loading,
+  error,
 }) {
   return (
     <React.Fragment>
       <Container>
         <Header />
         <ToDoContainer>
-          <ToDoCounter completedTask={completedTask} totalTask={totalTask} />
+          {loading ? (
+            <LoadingToDoCounter />
+          ) : (
+            <ToDoCounter completedTask={completedTask} totalTask={totalTask} />
+          )}
           <ToDoSearch
             searchValue={searchValue}
             setSearchValue={setSearchValue}
           />
           <Card>
             <ToDoList>
-              {searchTasks > 0 ? (
-                searchTasks.map((task) => (
-                  <ToDoItem
-                    text={task.text}
-                    key={task.id}
-                    isCompleted={task.completed}
-                    onComplete={() => handleCompletedTask(task.id)}
-                    handleDeleteTask={() => handleDeleteTask(task.id)}
-                  />
-                ))
-              ) : (
-                <p className="text-center">No tasks found. Start adding some tasks!</p>
+              {loading && (
+                <>
+                  <ToDosLoading />
+                  <ToDosLoading />
+                  <ToDosLoading />
+                </>
               )}
+              {error && <ToDosError />}
+              {!loading && searchTasks.length === 0 && <EmptyTodos />}
+              {searchTasks.map((task) => (
+                <ToDoItem
+                  text={task.text}
+                  key={task.id}
+                  isCompleted={task.completed}
+                  onComplete={() => handleCompletedTask(task.id)}
+                  handleDeleteTask={() => handleDeleteTask(task.id)}
+                />
+              ))}
             </ToDoList>
           </Card>
           <div className="mb-5 pb-4 mb-sm-0 pb-md-0">

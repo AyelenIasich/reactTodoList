@@ -9,7 +9,7 @@ function SuccessModal(props) {
     <ModalStandard
       title={"Congratulations"}
       handleCloseModal={handleCloseModal}
-      style="title-modal"
+      extraStyle="title-modal"
     >
       <div className="modal-body py-4">
         <StarSuccessIcon />

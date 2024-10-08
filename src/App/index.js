@@ -3,7 +3,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import AppUI from "./AppUI";
 
 function App() {
-  const [taskList, saveTasks] = useLocalStorage("tasks_v1", []);
+  const {item : taskList, saveItem: saveTasks, loading, error} = useLocalStorage("tasks_v1", []);
   const [searchValue, setSearchValue] = useState("");
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const completedTask = taskList.filter((task) => !!task.completed).length;
@@ -13,7 +13,7 @@ function App() {
     if (completedTask === totalTask && totalTask > 0) {
       handleOpenSuccessModal();
     }
-  }, [taskList]);
+  }, [completedTask, totalTask]);
 
   const normalizeText = (text) => {
     return text
@@ -61,6 +61,8 @@ function App() {
       handleDeleteTask={handleDeleteTask}
       handleCloseSuccessModal={handleCloseSuccessModal}
       showSuccessMessage={showSuccessMessage}
+      loading={loading}
+      error={error}
     />
   );
 }
