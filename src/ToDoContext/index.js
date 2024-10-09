@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const ToDoContext = createContext();
@@ -14,6 +14,8 @@ function ToDoProvider({ children }) {
   const [searchValue, setSearchValue] = useState("");
   const completedTask = taskList.filter((task) => !!task.completed).length;
   const totalTask = taskList.length;
+  const [showModalCreate, setShowModalCreate] = useState(false);
+  const [formError, setFormError] = useState({ field: "", message: "" });
 
   const normalizeText = (text) => {
     return text
@@ -44,12 +46,6 @@ function ToDoProvider({ children }) {
 
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-  //   useEffect(() => {
-  //     if (completedTask === totalTask && totalTask > 0) {
-  //       handleOpenSuccessModal();
-  //     }
-  //   }, [completedTask, totalTask]);
-
   const handleCloseSuccessModal = () => {
     setShowSuccessMessage(false);
   };
@@ -57,6 +53,48 @@ function ToDoProvider({ children }) {
   const handleOpenSuccessModal = () => {
     setShowSuccessMessage(true);
   };
+
+  const handleCreateTask = (newTask) => {
+    const errorEntity = { ...onValidate(newTask) };
+
+    if (Object.keys(errorEntity).length === 0) {
+      const newTodos = [...taskList];
+      const newTaskObject = {
+        id: taskList.length + 1,
+        text: newTask,
+        completed: false,
+      };
+      newTodos.push(newTaskObject);
+      saveTasks(newTodos);
+      setShowModalCreate(false);
+    }
+  };
+
+  const onValidate = (newTask) => {
+    const validationNameTask = onValidateTask(newTask);
+
+    let errorEntity = {};
+    if (validationNameTask.message) {
+        errorEntity = validationNameTask;
+      }
+    setFormError(errorEntity);
+    return errorEntity;
+  };
+
+  const onValidateTask = (newTask) => {
+    let error = { field: "taskName", message: "" };
+
+    if (!newTask.trim()) {
+      error.message = "Task name cannot be empty";
+    }
+    return error;
+  };
+
+  useEffect(() => {
+    if (completedTask === totalTask && totalTask > 0) {
+      handleOpenSuccessModal();
+    }
+  }, [completedTask, totalTask]);
 
   return (
     <ToDoContext.Provider
@@ -73,6 +111,10 @@ function ToDoProvider({ children }) {
         handleCompletedTask,
         handleCloseSuccessModal,
         handleOpenSuccessModal,
+        showModalCreate,
+        setShowModalCreate,
+        handleCreateTask,
+        formError,
       }}
     >
       {children}

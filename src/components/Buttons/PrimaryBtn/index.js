@@ -5,7 +5,7 @@ function PrimaryBtn(props) {
   const {label, onClick} = props;
 
   return (
-    <button onClick={onClick} className="primary-btn">{label}</button>
+    <button  onClick={onClick} className="primary-btn">{label}</button>
   )
 }
 

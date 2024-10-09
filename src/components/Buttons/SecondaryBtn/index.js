@@ -5,7 +5,7 @@ function SecondaryBtn(props) {
   const {label, onClick} = props;
 
   return (
-    <button onClick={onClick} className="secondary-btn">{label}</button>
+    <button type="button" onClick={onClick} className="secondary-btn">{label}</button>
   )
 }
 
