@@ -1,12 +1,20 @@
+import { ToDoContext } from "../../ToDoContext";
+import React, { useContext } from "react";
 import "./ToDoCounter.css";
+import LoadingToDoCounter from "../LoadingToDoCounter";
 
-function ToDoCounter(props) {
-  const { completedTask, totalTask } = props;
-
+function ToDoCounter() {
+  const { completedTask, totalTask, loading } = useContext(ToDoContext);
   return (
-    <h5 className="title pb-4">
-      You have completed {completedTask} of {totalTask} task
-    </h5>
+    <>
+      {loading ? (
+        <LoadingToDoCounter />
+      ) : (
+        <h5 className="title pb-4">
+          You have completed {completedTask} of {totalTask} task
+        </h5>
+      )}
+    </>
   );
 }
 
