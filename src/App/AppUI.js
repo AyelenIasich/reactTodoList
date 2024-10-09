@@ -14,26 +14,15 @@ import ToDosLoading from "../toDo/ToDosLoading";
 import ToDosError from "../toDo/ToDosError";
 import EmptyTodos from "../toDo/EmpyTodos/EmptyTodos";
 import LoadingToDoCounter from "../toDo/LoadingToDoCounter";
+import { ToDoContext } from "../ToDoContext";
 
-function AppUI({
-  completedTask,
-  totalTask,
-  searchValue,
-  setSearchValue,
-  searchTasks,
-  handleCompletedTask,
-  handleDeleteTask,
-  handleCloseSuccessModal,
-  showSuccessMessage,
-  loading,
-  error,
-}) {
+function AppUI() {
   return (
     <React.Fragment>
       <Container>
         <Header />
         <ToDoContainer>
-          {loading ? (
+          {/* {loading ? (
             <LoadingToDoCounter />
           ) : (
             <ToDoCounter completedTask={completedTask} totalTask={totalTask} />
@@ -41,28 +30,38 @@ function AppUI({
           <ToDoSearch
             searchValue={searchValue}
             setSearchValue={setSearchValue}
-          />
+          /> */}
           <Card>
-            <ToDoList>
-              {loading && (
-                <>
-                  <ToDosLoading />
-                  <ToDosLoading />
-                  <ToDosLoading />
-                </>
+            <ToDoContext.Consumer>
+              {({
+                loading,
+                error,
+                searchTasks,
+                handleDeleteTask,
+                handleCompletedTask,
+              }) => (
+                <ToDoList>
+                  {loading && (
+                    <>
+                      <ToDosLoading />
+                      <ToDosLoading />
+                      <ToDosLoading />
+                    </>
+                  )}
+                  {error && <ToDosError />}
+                  {!loading && searchTasks.length === 0 && <EmptyTodos />}
+                  {searchTasks.map((task) => (
+                    <ToDoItem
+                      text={task.text}
+                      key={task.id}
+                      isCompleted={task.completed}
+                      onComplete={() => handleCompletedTask(task.id)}
+                      handleDeleteTask={() => handleDeleteTask(task.id)}
+                    />
+                  ))}
+                </ToDoList>
               )}
-              {error && <ToDosError />}
-              {!loading && searchTasks.length === 0 && <EmptyTodos />}
-              {searchTasks.map((task) => (
-                <ToDoItem
-                  text={task.text}
-                  key={task.id}
-                  isCompleted={task.completed}
-                  onComplete={() => handleCompletedTask(task.id)}
-                  handleDeleteTask={() => handleDeleteTask(task.id)}
-                />
-              ))}
-            </ToDoList>
+            </ToDoContext.Consumer>
           </Card>
           <div className="mb-5 pb-4 mb-sm-0 pb-md-0">
             <Card>
@@ -72,9 +71,9 @@ function AppUI({
           {/* <CreateToTaskBtn setTaskList={setTaskList} taskList={taskList} /> */}
         </ToDoContainer>
       </Container>
-      {showSuccessMessage && (
+      {/* {showSuccessMessage && (
         <SuccessModal handleCloseModal={handleCloseSuccessModal} />
-      )}
+      )} */}
     </React.Fragment>
   );
 }
