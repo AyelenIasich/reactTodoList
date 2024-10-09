@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/reactTodoList/static/css/main.b76337f4.css",
+    "main.js": "/reactTodoList/static/js/main.7278e197.js",
+    "static/media/EmpyTaskIcon.png": "/reactTodoList/static/media/EmpyTaskIcon.d73c5e88e2dfc37b0cb8.png",
+    "static/media/starIcon.svg": "/reactTodoList/static/media/starIcon.d26ac4fa75a4a75ea9d568d6efd2d2d6.svg",
+    "index.html": "/reactTodoList/index.html",
+    "main.b76337f4.css.map": "/reactTodoList/static/css/main.b76337f4.css.map",
+    "main.7278e197.js.map": "/reactTodoList/static/js/main.7278e197.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b76337f4.css",
+    "static/js/main.7278e197.js"
+  ]
+}
