@@ -1,0 +1,16 @@
+.empty-todos-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .empty-todos-image {
+    width: 200px; 
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .empty-todos-container p {
+    font-size: 16px;
+    color: #555;
+  }
+  
