@@ -1,10 +1,8 @@
-import { ToDoContext } from "../../ToDoContext";
 import React, { useContext } from "react";
 import "./ToDoCounter.css";
 import LoadingToDoCounter from "../LoadingToDoCounter";
 
-function ToDoCounter() {
-  const { completedTask, totalTask, loading } = useContext(ToDoContext);
+function ToDoCounter({ completedTask, totalTask, loading }) {
   return (
     <>
       {loading ? (

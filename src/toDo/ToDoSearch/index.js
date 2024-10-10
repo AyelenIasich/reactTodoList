@@ -1,14 +1,11 @@
-import React, {useContext} from "react";
-import { ToDoContext } from "../../ToDoContext";
+import React, { useContext } from "react";
 import "./ToDoSearch.css";
 
-function ToDoSearch() {
- const {searchValue, setSearchValue} = useContext(ToDoContext)
- 
+function ToDoSearch({ searchValue, setSearchValue }) {
   const handleSearch = (e) => {
-    setSearchValue(e.target.value)
+    setSearchValue(e.target.value);
   };
- 
+
   return (
     <div className=" mb-3 search-wrapper">
       <input

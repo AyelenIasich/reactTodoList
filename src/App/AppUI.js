@@ -17,6 +17,7 @@ import { ToDoContext } from "../ToDoContext";
 import Modal from "../toDo/Modal";
 import CreateBtn from "../toDo/CreateBtn";
 import ToDoForm from "../toDo/ToDoForm";
+import TodoHeader from "../toDo/ToDoHeader";
 
 function AppUI() {
   const {
@@ -27,8 +28,12 @@ function AppUI() {
     handleCompletedTask,
     showModalCreate,
     setShowModalCreate,
-    showSuccessMessage, 
-    handleCloseSuccessModal, 
+    showSuccessMessage,
+    handleCloseSuccessModal,
+    completedTask,
+    totalTask,
+    searchValue,
+    setSearchValue,
   } = useContext(ToDoContext);
 
   return (
@@ -36,8 +41,17 @@ function AppUI() {
       <Container>
         <Header />
         <ToDoContainer>
-          <ToDoCounter />
-          <ToDoSearch />
+          <TodoHeader>
+            <ToDoCounter
+              completedTask={completedTask}
+              totalTask={totalTask}
+              loading={loading}
+            />
+            <ToDoSearch
+              searchValue={searchValue}
+              setSearchValue={setSearchValue}
+            />
+          </TodoHeader>
           <Card>
             <ToDoList>
               {loading && (
@@ -66,16 +80,17 @@ function AppUI() {
             </Card>
           </div>
           {/* <CreateTaskBtn/> */}
-          <CreateBtn setShowModalCreate={setShowModalCreate}/>
+          <CreateBtn setShowModalCreate={setShowModalCreate} />
         </ToDoContainer>
       </Container>
       {showSuccessMessage && (
         <SuccessModal handleCloseModal={handleCloseSuccessModal} />
       )}
-      {showModalCreate && 
-      <Modal>
-        <ToDoForm/>
-      </Modal>}
+      {showModalCreate && (
+        <Modal>
+          <ToDoForm />
+        </Modal>
+      )}
     </React.Fragment>
   );
 }
