@@ -72,7 +72,8 @@ function AppUI() {
       {showSuccessMessage && (
         <SuccessModal handleCloseModal={handleCloseSuccessModal} />
       )}
-      {showModalCreate && <Modal>
+      {showModalCreate && 
+      <Modal>
         <ToDoForm/>
       </Modal>}
     </React.Fragment>
